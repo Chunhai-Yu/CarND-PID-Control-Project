@@ -2,6 +2,31 @@
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+# Introduction
+This project implements a PID controller in C++ to maneuver the vehicle around a track in Udacity simulator. The simulator will provide the cross track error (CTE) and the velocity (mph) in order to compute the appropriate steering angle. The purpose of this project are:
+
+1. build a PID controller and tune the PID hyperparameters by applying the general processing flow
+2. test the solution on the simulator
+
+# Rubric
+# Compilation
+The code compiles without errors or warnings.
+# Implementation
+The PID procedure follows what was taught in the lessons. The detailed information is given in main.cpp and PID.cpp files.
+# Reflection
+1. Describe the effect each of the P, I, D components had in your implementation.
+
+The P, or "proportional", tries to steer the car toward the center line. It causes the car to steer proportional to the the CTE. If only P is applied, the car will overshoot the center line and go out of the road track easily. An example video is given in “Video/P.mp4”.
+
+The D, or "differential", helps to counteract the trend to overshoot the center line. A properly tuned D parameter will make the car approach the center line smoothly. An example video is given in "Video/PD.mp4".
+
+The I, or "integral", is to compensate for systematic biases in the CTE which prevents the P-D controller from reaching the center line. In this project it can be found when video "PD" and "PID" are compared, there is no obvious difference. So there may be no obvious systematic bias in this project.
+
+The final PID performance is given in video "Video/PID.mp4". 2. Describe how the final hyperparameters were chosen.
+The hyperparameters were chosen manually. First, I find the car can drive straight with 0 as parameters (given in video "Video/without.mp4"). Then I add the “P” and the car start going on following the road but with overshoots. Then I add the “D” to try to overcome the overshoots. Because I find without “I” the controller works already good, and with high value of “I” the car will go out of the road, so I choose very low value of “I”. At last the hyperparameters is adjusted to reduce the cross-track error. The final hyperparameters are (P: 0.2, I: 0.004, D: 3.0).
+# Simulation
+
+The vehicle successfully drive a lap around the track which is shown in video "Video/ PID.mp4".
 
 ## Dependencies
 
